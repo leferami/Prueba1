@@ -1,0 +1,133 @@
+   public static void MantenimentoFormulario(ArrayList<Sistema> sistema){
+          String codigoSistema,codigoFormulario;
+          String nombreSistema;
+          
+          int x=0,num;
+          
+          Formulario f;
+          Scanner opcion = new Scanner(System.in);
+          
+          while(x!=4){
+              do{
+                  System.out.println("\n\n1. Modificar Formulario");
+                  System.out.println("2. Crear Formulario");
+                  System.out.println("3. Eliminar Formulario");
+                  System.out.println("4. Salir");
+                  System.out.println("Elija una opcion -->");
+                  x=opcion.nextInt();
+              }while(x<0 || x>4);
+              
+              switch(x){
+                  case 1://Modificar de formulario
+                      String modificar,nuevoNombre;
+                      Scanner m = new Scanner(System.in);
+                      Scanner nuevo = new Scanner(System.in);
+                      int xx;//obtiene el numero de la lista
+                      if(!sistema.isEmpty()){
+                          System.out.println("Para modificar una formulario tiene que elejir el sistema que lo contiene");
+                          recorrerSistema(sistema);
+                          System.out.println("Ingrese el codigo del Sistema");
+                          modificar = m.nextLine();
+                          
+                          for(Sistema s1 : sistema){
+                              if(s1.getCodigo().equalsIgnoreCase(modificar)){
+                                  xx = s1.getNumero();
+                                  s1.modificarFormulario(sistema, xx);                                     
+                              }
+                          }
+                      }
+                      
+                      break;
+                      
+                      
+                  case 2://crear formulario
+                      String agregrar;
+                      Scanner a = new Scanner(System.in);
+                      int xy=0;
+                      if(!sistema.isEmpty()){
+                          for(Sistema s : sistema){
+                             nombreSistema = s.getNombre();
+                             codigoSistema = s.getCodigo();
+                             num = s.getNumero();
+//                              System.out.println("\n"+ num +")Nombre: "+nombreSistema+"\nCodigo:"+codigoSistema);  
+                              System.out.println(""+s.toString());
+                          }
+                          System.out.println("\n* A que Sistema le quieres agregar un formulario *");
+                          agregrar = a.nextLine();
+                          for(Sistema s1 : sistema){
+                              if(s1.getCodigo().equalsIgnoreCase(agregrar)){
+                                  xy++;
+                                  s1.agrgegarFormulario(sistema,xy);
+                              }
+                          }
+                          
+                      }
+                      
+                      else{
+                          System.out.println("No hay sistemas creados");
+                      }
+                      break;
+                      
+                      
+                  case 3://Eliminar formulario
+                      int xz=0;//asiganacion numero de la lista
+                      Scanner cod = new Scanner(System.in);
+                      String codigo;
+                      if(!sistema.isEmpty()){
+                          System.out.println("Para eliminar un formulario elija un SISTEMA");
+                          recorrerSistema(sistema);
+                          System.out.println("Ingrese el codigo del sistema");
+                          codigo = cod.nextLine();
+                          for(Sistema s2: sistema){
+                              if(s2.getCodigo().equalsIgnoreCase(codigo)){
+                                  xz++;
+                                  System.out.println(""+xz);
+                                  s2.eliminarFormulario(sistema,xz);
+                                  
+                              }
+                          }
+                      }
+                          break;
+                  case 4://salir
+                      break;
+                      
+              }
+          }
+          
+
+  public void agrgegarFormulario(ArrayList<Sistema> sistemas,int num){
+    Scanner x = new Scanner(System.in);
+    Scanner y = new Scanner(System.in);
+    String n,c,n1,c1,c2;
+    String concatenar;
+    Formulario f;
+        if (sistemas.isEmpty()){
+        System.out.println("No se puede agregar formulario");
+    }
+        
+    else {
+            System.out.println("Ingrese el nombre del formulario:");
+            n = x.nextLine();
+            System.out.println("Ingrese el codigo del formulario:");
+            c = y.nextLine();
+            if(formulario.isEmpty()){
+                
+                c2 = sistemas.get(num-1).getCodigo();
+                concatenar = c2+"-"+c;
+                f = new Formulario(1,n,concatenar,true);
+                formulario.add(f);
+                n1 = formulario.get(0).getNombre();
+                c1 = f.getCodigo();                
+                System.out.printf(") Nombre: " + n1
+                        + "\nCodigo: " + concatenar +"\n"); 
+                System.out.println("El formulario ha sido creado\n");                
+            }
+            else{
+                c2 = sistemas.get(num-1).getCodigo();
+                concatenar = c2+"-"+c;
+                f = new Formulario(formulario.size()+1,n, concatenar, true);
+                formulario.add(f);
+                System.out.println("El formulario ha sido creado");
+            }
+        }
+    
