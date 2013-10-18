@@ -1,4 +1,8 @@
-   public static void MantenimentoFormulario(ArrayList<Sistema> sistema){
+   Jose Antonio Velez Gomez
+   Lenguaje de Programacion
+   GitHub 18/10/2013
+   Aprendiendo el manejo de Git
+	public static void MantenimentoFormulario(ArrayList<Sistema> sistema){
           String codigoSistema,codigoFormulario;
           String nombreSistema;
           
